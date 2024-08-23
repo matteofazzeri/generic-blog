@@ -61,6 +61,8 @@ export const login = async (req, res) => {
         httpOnly: true,
         sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time (1 day in milliseconds)
+        domain: '.vercel.app',
+        secure: process.env.NODE_ENV === "production",
       })
       .status(200)
       .json(info);
