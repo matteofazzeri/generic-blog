@@ -10,7 +10,7 @@ const Write = () => {
 
   const navigate = useNavigate();
 
-  const [value, setValue] = useState(state?.desc || "");
+  const [value, setValue] = useState(state?.description || "");
   const [title, setTitle] = useState(state?.title || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
@@ -20,7 +20,7 @@ const Write = () => {
       if (file) {
         const formData = new FormData();
         formData.append("file", file);
-        const res = await axios.post("http://localhost:5000/api/upload", formData);
+        const res = await axios.post(`${process.env.REACT_APP_API_URI}upload`, formData);
         return res.data;
       }
     } catch (err) {
@@ -35,10 +35,10 @@ const Write = () => {
 
     try {
       state ?
-        await axios.put(`http://localhost:5000/api/posts/${state.id}`, { title, desc: value, img: file ? imgUrl : "", cat: cat },
+        await axios.put(`${process.env.REACT_APP_API_URI}posts/${state.id}`, { title, desc: value, img: file ? imgUrl : "", cat: cat },
           { withCredentials: true })
         :
-        await axios.post(`http://localhost:5000/api/posts/`, { title, desc: value, img: imgUrl, cat: cat },
+        await axios.post(`${process.env.REACT_APP_API_URI}posts`, { title, desc: value, img: imgUrl, cat: cat },
           { withCredentials: true });
 
       navigate("/");

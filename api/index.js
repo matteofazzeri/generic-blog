@@ -5,18 +5,21 @@ import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
 import multer from "multer";
-
 import dotenv from "dotenv";
+
+import test from "./routes/create-test-table.js";
 
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+const port = 5000;
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow this origin
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
+}));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -28,7 +31,7 @@ const storage = multer.diskStorage({
     cb(null, "../client/public/images");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now()+file.originalname);
+    cb(null, Date.now() + file.originalname);
   },
 });
 
@@ -42,11 +45,13 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/test", test);
+
 
 app.get("/", (req, res) => {
-  res.send("Hello to Memories API");
+  res.send("Hello World!");
 });
 
-app.listen(5000, () => {
-  console.log("Connected");
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

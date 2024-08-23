@@ -21,7 +21,7 @@ const Register = () => {
     e.preventDefault();
     console.log(inputs); // Check the structure and content of inputs here
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
+      await axios.post(`${process.env.REACT_APP_API_URI}auth/register`, {
         inputs,
       });
       navigate("/login");

@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const Menu = ({cat}) => {
-  
+const Menu = ({ cat }) => {
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/posts/?cat=${cat}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URI}posts/?cat=${cat}`);
         setPosts(res.data);
       } catch (error) {
         // console.log(error);
@@ -25,7 +26,9 @@ const Menu = ({cat}) => {
         <div key={post.id} className="post">
           <img src={`/images/${post.img}`} alt={post.title} />
           <h2>{post.title}</h2>
-          <button>Read More</button>
+          <Link to={`/post/${post.id}`}>
+            <button>Read More</button>
+          </Link>
         </div>
       ))}
     </div>

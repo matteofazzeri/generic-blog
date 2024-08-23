@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/posts${cat}`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URI}posts${cat}`);
         setPosts(res.data);
       } catch (error) {
         // console.log(error);
@@ -35,10 +35,12 @@ const Home = () => {
               </Link>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(post.desc),
+                  __html: DOMPurify.sanitize(post.description),
                 }}
               ></p>
-              <button>Read More</button>
+              <Link to={`/post/${post.id}`}>
+                <button>Read More</button>
+              </Link>
             </div>
           </div>
         )

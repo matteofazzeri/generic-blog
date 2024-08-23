@@ -22,7 +22,7 @@ const Single = () => {
     const fetchPosts = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/posts/${postId}`
+          `${process.env.REACT_APP_API_URI}posts/${postId}`
         );
         setPost(res.data);
       } catch (error) {
@@ -34,7 +34,7 @@ const Single = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URI}posts/${postId}`, {
         withCredentials: true,
       });
       navigate("/");
@@ -67,7 +67,7 @@ const Single = () => {
         <h1>{post.title}</h1>
         <p
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(post.desc),
+            __html: DOMPurify.sanitize(post.description),
           }}
         ></p>
       </div>
