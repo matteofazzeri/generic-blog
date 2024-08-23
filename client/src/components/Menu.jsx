@@ -8,7 +8,7 @@ const Menu = ({cat}) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/posts/?cat=${cat}`);
+        const res = await axios.get(`http://localhost:5000/api/posts/?cat=${cat}`);
         setPosts(res.data);
       } catch (error) {
         // console.log(error);

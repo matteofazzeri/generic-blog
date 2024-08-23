@@ -47,6 +47,6 @@ app.get("/", (req, res) => {
   res.send("Hello to Memories API");
 });
 
-app.listen(8800, () => {
+app.listen(5000, () => {
   console.log("Connected");
 });
