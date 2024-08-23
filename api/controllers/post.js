@@ -5,9 +5,9 @@ import { sql } from '@vercel/postgres';
 
 export const getPosts = async (req, res) => {
   try {
-    const category = req.cat;
+    const category = req.query.cat;
     const query = category
-      ? sql`SELECT * FROM posts WHERE cat = ${category}`
+      ? sql`SELECT * FROM posts WHERE category = ${category}`
       : sql`SELECT * FROM posts`;
 
 
@@ -91,6 +91,7 @@ export const deletePost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const token = req.cookies.access_token;
+
     if (!token) return res.status(401).json({ message: "Unauthorized" });
 
     const user = jwt.verify(token, process.env.JWT_SECRET);
