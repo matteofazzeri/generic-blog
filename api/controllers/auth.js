@@ -34,11 +34,12 @@ export const login = async (req, res) => {
   try {
     // Check if the user exists
     const { username, password } = req.body.inputs;
-    const users = await sql`
-      SELECT * FROM users WHERE username = ${username} OR email = ${username};
-    `;
 
-    return res.status(400).send("users: " + users);
+    /* const users = await sql`
+      SELECT * FROM users WHERE username = ${username} OR email = ${username};
+    `; */
+
+    return res.status(400).send("users: " + req);
 
     if (users.length === 0) {
       return res.status(404).send({ message: "User not found!" });
