@@ -61,7 +61,7 @@ export const login = async (req, res) => {
       secure: true, // Ensures the cookie is sent over HTTPS
       sameSite: "none", // Required for cross-site cookies
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      domain: ".vercel.app", // Ensures cookie is available to your domain
+      //domain: ".vercel.app", // Ensures cookie is available to your domain
     })
       .status(200)
       .json(info);
