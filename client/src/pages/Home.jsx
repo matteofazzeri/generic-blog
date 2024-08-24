@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="posts">
-        {posts.map((post) => (
+        {posts && posts.map((post) => (
           <div key={post.id} className="post" >
             <div className="img">
               <img src={`/images/${post.img}`} alt={post.title} />
