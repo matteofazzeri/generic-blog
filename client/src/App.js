@@ -7,6 +7,8 @@ import Single from "./pages/Single";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
 
 
 import "./styles.scss";
@@ -55,6 +57,7 @@ function App() {
     <div className="app">
       <div className="container">
         <RouterProvider router={router} />
+        <SpeedInsights />
         <Analytics />
       </div>
     </div>
