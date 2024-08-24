@@ -56,13 +56,13 @@ export const login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRATION,
     });
 
-    res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000, // Cookie expiration time (1 day in milliseconds)
-        domain: '.vercel.app',
-      })
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      secure: true, // Ensures the cookie is sent over HTTPS
+      sameSite: "none", // Required for cross-site cookies
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      domain: ".vercel.app", // Ensures cookie is available to your domain
+    })
       .status(200)
       .json(info);
   } catch (err) {

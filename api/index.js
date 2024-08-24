@@ -1,12 +1,13 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import multer from "multer";
+import dotenv from "dotenv";
+import path from "path";
+
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import authRoutes from "./routes/auth.js";
-import multer from "multer";
-import dotenv from "dotenv";
-
 import test from "./routes/create-test-table.js";
 
 dotenv.config();
@@ -17,18 +18,16 @@ const port = 5000;
 app.use(cors({
   origin: 'https://erikasblog.vercel.app', // Allow this origin
   credentials: true, // Enable cookies
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow specific HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
 }));
 
 app.use(cookieParser());
 app.use(express.json());
 
-
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../client/public/images");
+    cb(null, path.join(__dirname, '../client/public/images'));
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname);
@@ -46,7 +45,6 @@ app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/test", test);
-
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
