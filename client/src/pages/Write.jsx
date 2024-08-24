@@ -15,6 +15,11 @@ const Write = () => {
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.category || "");
 
+  const escapeSingleQuotes = (text) => {
+    return text.replace(/'/g, "''");
+  };
+
+
   const upload = async () => {
     try {
       if (file) {
@@ -32,6 +37,8 @@ const Write = () => {
     e.preventDefault();
 
     const imgUrl = await upload();
+
+    setValue(escapeSingleQuotes(value));
 
     try {
       state ?

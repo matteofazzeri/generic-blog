@@ -3,10 +3,8 @@ import { sql } from '@vercel/postgres';
 export default async function handler(request, response) {
     try {
         const result =
-            await sql`-- Alter the 'posts' table to allow NULL values in the 'img' column
-ALTER TABLE posts
-ALTER COLUMN img DROP NOT NULL;
-
+            await sql`ALTER TABLE 'posts'
+                MODIFY 'description' TEXT NOT NULL;
 `;
         return response.status(200).json({ result });
     } catch (error) {
