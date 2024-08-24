@@ -38,6 +38,8 @@ export const login = async (req, res) => {
       SELECT * FROM users WHERE username = ${username} OR email = ${username};
     `;
 
+    return res.status(400).send("users: " + users);
+
     if (users.length === 0) {
       return res.status(404).send({ message: "User not found!" });
     }
