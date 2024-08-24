@@ -19,8 +19,6 @@ body {
 
     .container {
 
-        width: 90vw;
-
         .link {
             text-decoration: none;
             color: inherit;
@@ -33,6 +31,7 @@ body {
             align-items: center;
             justify-content: center;
             height: 100vh;
+            width: 100vw;
             background-color: $lightGreen;
 
             h1 {
@@ -124,8 +123,23 @@ body {
                         }
                     }
                 }
+
+            }
+
+            @media screen and (max-width: 768px) {
+                .container {
+                    flex-direction: column;
+                    gap: 20px;
+
+                    .links {
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+                }
+
             }
         }
+
 
         //* Footer
 
@@ -147,6 +161,10 @@ body {
 
         .home {
 
+            width: 80vw;
+            min-height: 70vh;
+
+            margin-left: 2.5vw;
 
             .posts {
                 margin-top: 50px;
@@ -157,7 +175,7 @@ body {
                 .post {
                     display: flex;
                     min-height: 250px;
-                    max-height: 400px;
+                    max-height: 700px;
                     gap: 10px;
 
                     &:nth-child(2n+1) {
@@ -167,6 +185,8 @@ body {
                     .img {
                         flex: 2;
                         position: relative;
+
+                        min-height: 200px;
 
                         &::after {
                             content: "";
@@ -192,6 +212,11 @@ body {
                         flex-direction: column;
                         justify-content: space-between;
 
+                        .title-link {
+                            text-decoration: none;
+                            color: inherit;
+                        }
+
                         h1 {
                             font-size: 38px;
                         }
@@ -202,6 +227,7 @@ body {
                             -webkit-box-orient: vertical; // Specifies the box orientation
                             overflow: hidden; // Hide overflow text
                             font-size: 18px;
+                            max-width: 95%;
                         }
 
                         button {
@@ -222,6 +248,20 @@ body {
 
                         }
                     }
+
+                    @media screen and (max-width: 768px) {
+                        margin-left: 5vw;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        &:nth-child(2n+1) {
+                            flex-direction: column;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 768px) {
+                    gap: 50px;
                 }
             }
         }
@@ -230,7 +270,16 @@ body {
 
         .single {
             display: flex;
-            gap: 50px;
+            flex-wrap: wrap;
+            gap: 150px;
+
+            width: 80vw;
+
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                gap: 20px;
+
+            }
 
             .content {
                 flex: 5;
@@ -241,7 +290,7 @@ body {
 
                 img {
                     width: 100%;
-                    max-height: 300px;
+                    height: 300px;
                     object-fit: cover;
                 }
 

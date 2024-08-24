@@ -30,7 +30,7 @@ const Home = () => {
               <img src={`/images/${post.img}`} alt={post.title} />
             </div>
             <div className="content">
-              <Link to={`/post/${post.id}`}>
+              <Link className="title-link" to={`/post/${post.id}`}>
                 <h1>{post.title}</h1>
               </Link>
               <p

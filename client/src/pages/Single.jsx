@@ -29,6 +29,9 @@ const Single = () => {
         // console.log(error);
       }
     };
+
+    
+
     fetchPosts();
   }, [postId]);
 
@@ -52,7 +55,7 @@ const Single = () => {
 
           <div className="info">
             <span>{post.username}</span>
-            <p>Posted {moment(post.date).fromNow()}</p>
+            <p>Posted {moment(post.created_at).fromNow()}</p>
           </div>
           {currentUser?.username === post.username && (
             <div className="edit">

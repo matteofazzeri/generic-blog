@@ -16,7 +16,7 @@ const app = express();
 const port = 5000;
 
 app.use(cors({
-  origin: 'https://erikasblog.vercel.app', // Allow this origin
+  origin: process.env.NODE_ENV === 'production' ? 'https://erikasblog.vercel.app' : 'http://localhost:3000', // Allow this origin
   credentials: true, // Enable cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow specific HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'] // Allow specific headers
