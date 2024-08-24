@@ -151,6 +151,7 @@ $lightGreen: #b9e7e7;
 
                 .post {
                     display: flex;
+                    max-height: 100px;
                     gap: 100px;
 
                     &:nth-child(2n+1) {
@@ -190,7 +191,6 @@ $lightGreen: #b9e7e7;
                         }
 
                         p {
-                            max-height: 100px;
                             font-size: 18px;
                             text-overflow: ellipsis;
                         }
