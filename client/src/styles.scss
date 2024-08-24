@@ -151,7 +151,7 @@ $lightGreen: #b9e7e7;
 
                 .post {
                     display: flex;
-                    max-height: 100px;
+                    max-height: 300px;
                     gap: 100px;
 
                     &:nth-child(2n+1) {
@@ -192,10 +192,9 @@ $lightGreen: #b9e7e7;
 
                         p {
                             display: -webkit-box; // Enable the use of flexbox model with WebKit
-                            -webkit-line-clamp: 3; // Number of lines to show before truncating
+                            -webkit-line-clamp: 4; // Number of lines to show before truncating
                             -webkit-box-orient: vertical; // Specifies the box orientation
                             overflow: hidden; // Hide overflow text
-                            text-overflow: ellipsis; // Add ellipsis to indicate truncated text
                             max-height: 40px; // Set the maximum height of the container
                             font-size: 18px;
                         }
