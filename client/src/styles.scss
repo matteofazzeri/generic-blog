@@ -191,8 +191,13 @@ $lightGreen: #b9e7e7;
                         }
 
                         p {
+                            display: -webkit-box; // Enable the use of flexbox model with WebKit
+                            -webkit-line-clamp: 3; // Number of lines to show before truncating
+                            -webkit-box-orient: vertical; // Specifies the box orientation
+                            overflow: hidden; // Hide overflow text
+                            text-overflow: ellipsis; // Add ellipsis to indicate truncated text
+                            max-height: 100px; // Set the maximum height of the container
                             font-size: 18px;
-                            text-overflow: ellipsis;
                         }
 
                         button {
