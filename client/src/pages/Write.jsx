@@ -13,7 +13,7 @@ const Write = () => {
   const [value, setValue] = useState(state?.description || "");
   const [title, setTitle] = useState(state?.title || "");
   const [file, setFile] = useState(null);
-  const [cat, setCat] = useState(state?.cat || "");
+  const [cat, setCat] = useState(state?.category || "");
 
   const upload = async () => {
     try {
