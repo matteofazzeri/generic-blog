@@ -33,13 +33,13 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     // Check if the user exists
-    const { username, password } = req.body.inputs;
+    // const { username, password } = req.body.inputs;
 
     /* const users = await sql`
       SELECT * FROM users WHERE username = ${username} OR email = ${username};
     `; */
 
-    return res.status(400).json({ users: req });
+    return res.status(400).json({ users: req.body });
 
     if (users.length === 0) {
       return res.status(404).send({ message: "User not found!" });
