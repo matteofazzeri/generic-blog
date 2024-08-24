@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Single from "./pages/Single";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Analytics } from '@vercel/analytics/react';
+
 
 import "./styles.scss";
 
@@ -53,6 +55,7 @@ function App() {
     <div className="app">
       <div className="container">
         <RouterProvider router={router} />
+        <Analytics />
       </div>
     </div>
   );
