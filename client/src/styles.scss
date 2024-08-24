@@ -151,8 +151,9 @@ $lightGreen: #b9e7e7;
 
                 .post {
                     display: flex;
-                    max-height: 300px;
-                    gap: 100px;
+                    min-height: 250px;
+                    max-height: 400px;
+                    gap: 10px;
 
                     &:nth-child(2n+1) {
                         flex-direction: row-reverse;
