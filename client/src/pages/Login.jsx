@@ -22,6 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(inputs);
       await login(inputs);
       navigate("/");
     } catch (error) {
