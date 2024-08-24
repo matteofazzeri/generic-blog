@@ -11,8 +11,8 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (inputs) => {
     console.log("loggin in...");
 
-    const res = await axios.post(`${process.env.REACT_APP_API_URI}auth/login`, inputs, { withCredentials: true });
-    
+    const res = await axios.post(`${process.env.REACT_APP_API_URI}auth/login`, { inputs }, { withCredentials: true });
+
     setCurrentUser(res.data);
   };
 
