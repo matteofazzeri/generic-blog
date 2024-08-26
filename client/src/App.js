@@ -5,7 +5,9 @@ import Write from "./pages/Write";
 import Home from "./pages/Home";
 import Single from "./pages/Single";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
+import Unauthorized from "./pages/Unauthorized";
+// import Register from "./pages/Register";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
@@ -18,7 +20,6 @@ const Layout = () => {
     <>
       <Navbar />
       <Outlet />
-      <Footer />
     </>
   );
 };
@@ -46,21 +47,34 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  {
+  /* {
     path: "/register",
     element: <Register />,
-  }
+  }, */
+  {
+    path: "/unauthorized",
+    element: <Unauthorized />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+
 ]);
 
 function App() {
   return (
-    <div className="app">
-      <div className="container">
-        <RouterProvider router={router} />
-        <SpeedInsights />
-        <Analytics />
+    <>
+      <div className="app">
+        <div className="container">
+          <RouterProvider router={router} />
+          
+          <SpeedInsights />
+          <Analytics />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

@@ -1,18 +1,29 @@
 import jwt from "jsonwebtoken";
 
 import { sql } from '@vercel/postgres';
+import { db } from '@vercel/postgres';
 
 
 export const getPosts = async (req, res) => {
   try {
     const category = req.query.cat;
-    const query = category
-      ? sql`SELECT * FROM posts WHERE category = ${category}`
-      : sql`SELECT * FROM posts`;
+    
+    const client = await db.connect();
 
+    if (category) {
+      const { rows } = await client.query(
+        `SELECT * FROM posts WHERE category LIKE '%${category}%'`
+      );
+      client.release();
+      return res.status(200).json(rows);
+    }
 
-    const { rows } = await query;
+    const { rows } = await client.sql`SELECT* from posts`;
+
+    client.release();
+
     return res.status(200).json(rows);
+
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -40,8 +51,6 @@ export const addPost = async (req, res) => {
   try {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json({ message: "Unauthorized" });
-
-    
 
     const user = jwt.verify(token, process.env.JWT_SECRET);
 

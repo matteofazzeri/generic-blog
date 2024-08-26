@@ -1,19 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authcontext.js";
 import Logo from "../img/logo.png";
+import Hamburger from 'hamburger-react'
+
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
+
+  const [isOpen, setOpen] = useState(false)
 
   return (
     <div className="navbar">
       <div className="container">
         <div className="logo">
-          <Link to={`/`}>
+          <a href={`/`}>
             <img src={Logo} alt="logo" />
-          </Link>
+          </a>
         </div>
+
+        <div className="hamburger">
+          <Hamburger
+            toggled={isOpen}
+            toggle={setOpen}
+            duration={0.5}
+            color="#b9e7e7"
+            onToggle={toggled => {
+              if (toggled) {
+                console.log("sidebar opened")
+              } else {
+                console.log("sidebar closed")
+              }
+            }}
+            label="Show menu"
+            hideOutline={false}
+          />
+        </div>
+
         <div className="links">
           <Link className="link" to="/?cat=art">
             <h6>ART</h6>
@@ -37,13 +60,13 @@ const Navbar = () => {
           {currentUser ? (
             <span onClick={logout}>Logout</span>
           ) : (
-            <Link to="/login">Login</Link>
+            <a href="/login">Login</a>
           )}
-          <span className="write">
-            <Link className="link" to="/write">
+          {currentUser && currentUser.role.includes('admin') && <span className="write">
+            <a className="link" href="/write" >
               Write
-            </Link>
-          </span>
+            </a>
+          </span>}
         </div>
       </div>
     </div>

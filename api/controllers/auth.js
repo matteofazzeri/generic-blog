@@ -39,9 +39,9 @@ export const login = async (req, res) => {
       SELECT * FROM users WHERE username = ${username} OR email = ${username};
     `;
 
-    if (users.length === 0) {
+    if (users.length === 0)
       return res.status(404).send({ message: "User not found!" });
-    }
+
 
     // Check if the password is correct
     const user = users.rows[0];
@@ -53,7 +53,7 @@ export const login = async (req, res) => {
 
     const { password: _, ...info } = user;
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRATION,
     });
 

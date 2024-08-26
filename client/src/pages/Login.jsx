@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link, */ useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authcontext.js";
 
 const Login = () => {
@@ -51,9 +51,9 @@ const Login = () => {
 
         {error && <p>{error}</p>}
 
-        <span>
+        {/* <span>
           Don't you have an account? <Link to="/register">Register</Link>
-        </span>
+        </span> */}
       </form>
     </div>
   );
