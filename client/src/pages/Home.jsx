@@ -12,7 +12,7 @@ const Home = () => {
 
   const cat = useLocation().search;
 
-  console.log(cat);
+  document.title = cat ? "Erika's Blog - " + new URLSearchParams(cat).get("cat") : "Erika's Blog";
 
   useEffect(() => {
     const fetchPosts = async () => {

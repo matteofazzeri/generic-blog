@@ -25,14 +25,15 @@ const Single = () => {
           `${process.env.REACT_APP_API_URI}posts/${postId}`
         );
         setPost(res.data);
+
+        document.title = res.data.title ? res.data.title : "Loading...";
       } catch (error) {
         // console.log(error);
       }
     };
 
-    
-
     fetchPosts();
+
   }, [postId]);
 
   const handleDelete = async () => {
