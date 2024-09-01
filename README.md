@@ -1,7 +1,3 @@
-Sure! Below is a comprehensive `README.md` file tailored to your blog application. It includes all the details you provided, structured in a clear and professional manner suitable for GitHub.
-
----
-
 # Blog App
 
 ## Overview
