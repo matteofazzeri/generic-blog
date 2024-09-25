@@ -35,13 +35,19 @@ export const login = async (req, res) => {
     // Check if the user exists
     const { username, password } = req.body.inputs;
 
-    const users = await sql`
-      SELECT * FROM users WHERE username = ${username} OR email = ${username};
-    `;
+    if (!username || !password)
+      return res.status(400).send({ message: "Please provide a username and password!" });
+
+    let users;
+    
+    try {
+      users = await sql`SELECT * FROM users WHERE username = ${username} OR email = ${username};`;
+    } catch (error) {
+      return res.status(401).send({ message: "Wrong username or password!" });
+    }
 
     if (users.length === 0)
       return res.status(404).send({ message: "User not found!" });
-
 
     // Check if the password is correct
     const user = users.rows[0];
@@ -67,7 +73,7 @@ export const login = async (req, res) => {
       .status(200)
       .json(info);
   } catch (err) {
-    return res.status(500).send({ message: "Internal Server Error" });
+    return res.status(500).send({ message: "Internal Server Error: " +  err });
   }
 };
 
