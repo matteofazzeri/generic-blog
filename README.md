@@ -65,4 +65,4 @@ A responsive and modern blog application built with React for the front-end and 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+/*This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.*/
