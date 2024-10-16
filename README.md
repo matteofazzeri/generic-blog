@@ -62,7 +62,3 @@ A responsive and modern blog application built with React for the front-end and 
 
 - [ ] **Social Login Integration**:
   Implement social login options for Google and Facebook, allowing users to sign in or register quickly using their existing social media accounts. This will streamline the authentication process and potentially increase user engagement.
-
-## License
-
-/*This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.*/
